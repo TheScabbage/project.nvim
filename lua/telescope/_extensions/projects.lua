@@ -17,6 +17,7 @@ local entry_display = require("telescope.pickers.entry_display")
 local history = require("project_nvim.utils.history")
 local project = require("project_nvim.project")
 local config = require("project_nvim.config")
+local oil = require("oil")
 
 ----------
 -- Actions
@@ -94,7 +95,17 @@ local function browse_project_files(prompt_bufnr)
     hidden = config.options.show_hidden,
   }
   if cd_successful then
-    builtin.file_browser(opt)
+    if oil ~= nil then
+      local selected_entry = state.get_selected_entry(prompt_bufnr)
+      if selected_entry == nil then
+        actions.close(prompt_bufnr)
+        return
+      end
+      print("navigating to project path '" .. project_path .. "'")
+      oil.open(project_path)
+    else
+      builtin.file_browser(opt)
+    end
   end
 end
 
