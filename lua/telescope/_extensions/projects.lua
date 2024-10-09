@@ -116,7 +116,7 @@ local function browse_project_files(prompt_bufnr)
     end
   end
 
-  selection_function = get_selection_func();
+  local selection_function = get_selection_func()
   if selection_function ~= nil then
     selection_function()
   end
