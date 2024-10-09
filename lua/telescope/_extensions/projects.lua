@@ -89,7 +89,7 @@ local function find_project_files(prompt_bufnr)
 end
 
 local function get_selection_func()
-  local project_extension = telescope._extensions.projects
+  local project_extension = telescope.extensions.projects
   if project_extension and project_extension.config then
     return project_extension.config.on_project_selected
   end
