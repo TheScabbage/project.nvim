@@ -181,7 +181,11 @@ local function projects(opts)
 
       local on_project_selected = function()
         browse_project_files(prompt_bufnr)
+        if opts.on_selected then
+          opts.on_selected()
+        end
       end
+
       actions.select_default:replace(on_project_selected)
       return true
     end,
