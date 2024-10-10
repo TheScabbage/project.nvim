@@ -88,14 +88,6 @@ local function find_project_files(prompt_bufnr)
   end
 end
 
-local function get_selection_func()
-  local project_extension = telescope.extensions.projects
-  if project_extension and project_extension.config then
-    return project_extension.config.on_project_selected
-  end
-  return nil
-end
-
 local function browse_project_files(prompt_bufnr)
   local project_path, cd_successful = change_working_directory(prompt_bufnr, true)
   local opt = {
@@ -116,9 +108,8 @@ local function browse_project_files(prompt_bufnr)
     end
   end
 
-  local selection_function = get_selection_func()
-  if selection_function ~= nil then
-    selection_function()
+  if config.selection_function ~= nil then
+    config.selection_function()
   end
 end
 

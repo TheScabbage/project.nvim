@@ -40,6 +40,8 @@ M.defaults = {
   -- Path where project.nvim will store the project history for use in
   -- telescope
   datapath = vim.fn.stdpath("data"),
+
+  selection_func = nil,
 }
 
 ---@type ProjectOptions
