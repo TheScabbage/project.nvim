@@ -12,7 +12,7 @@ M.last_project = nil
 function M.find_lsp_root()
   -- Get lsp client for current buffer
   -- Returns nil or string
-  local buf_ft = vim.api.nvim_buf_get_option_value(0, "filetype")
+  local buf_ft = vim.api.nvim_get_option_value(0, "filetype")
   local clients = vim.lsp.get_clients({buffer=bufnr})
   if next(clients) == nil then
     return nil
